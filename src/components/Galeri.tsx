@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
-import { FloralTopRight, FloralBottomLeft, FloatingPetals } from './Ornaments';
+import { FloralTopRight, FloralBottomLeft, FloatingPetals, RoseCenter } from './Ornaments';
+import { SectionFrame } from './FrameBorder';
 
 const Galeri: React.FC = () => {
   const images = [
     "/DSC_1980.jpg",
     "/DSC_2030.jpg",
     "/DSC_2129.jpg",
-    "/DSC_2231.jpg",
+    "/WhatsApp Image 2026-08-04 at 18.53.43.jpeg",
     "/DSC_2263.jpg",
     "/DSC_2369.jpg",
     "/DSC_2379.jpg",
@@ -43,6 +44,8 @@ const Galeri: React.FC = () => {
   return (
     <section id="galeri" className="py-24 bg-secondary relative overflow-hidden">
       <FloatingPetals />
+      <SectionFrame variant="garland-corners" opacity="opacity-85" />
+      <RoseCenter className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] opacity-15 mix-blend-multiply pointer-events-none" />
       <FloralTopRight className="absolute top-0 right-0 p-2 md:p-4 opacity-60 pointer-events-none w-48 h-48 md:w-64 md:h-64" />
       <FloralBottomLeft className="absolute bottom-0 left-0 p-2 md:p-4 opacity-60 pointer-events-none w-48 h-48 md:w-64 md:h-64" />
 
@@ -76,7 +79,9 @@ const Galeri: React.FC = () => {
               <img 
                 src={src} 
                 alt={`Gallery ${index + 1}`} 
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 relative z-10"
+                loading="lazy"
+                decoding="async"
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 relative z-10 transform-gpu will-change-transform"
                 onError={(e) => {
                   e.currentTarget.src = `https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=800`;
                 }}

@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MailOpen } from 'lucide-react';
 import { FloralTopLeft, FloralBottomRight, FloatingPetals, RoseCenter } from './Ornaments';
+import { SectionFrame } from './FrameBorder';
+import { globalAudio } from '../lib/audioManager';
 
 interface CoverProps {
   isOpened: boolean;
@@ -14,14 +16,15 @@ const Cover: React.FC<CoverProps> = ({ isOpened, onOpen }) => {
     if (!isOpened) {
       document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = '';
+      document.body.style.overflow = 'unset';
     }
-    
-    // Cleanup if unmounted
-    return () => {
-      document.body.style.overflow = '';
-    };
   }, [isOpened]);
+
+  const handleOpen = () => {
+    // Memutar musik langsung saat tombol diklik (menghindari blokir autoplay browser)
+    globalAudio.play().catch(e => console.error("Audio play failed:", e));
+    onOpen();
+  };
 
   return (
     <AnimatePresence>
@@ -43,6 +46,7 @@ const Cover: React.FC<CoverProps> = ({ isOpened, onOpen }) => {
 
           {/* Kartu Undangan (Amplop) */}
           <div className="relative z-10 flex flex-col items-center justify-center text-center p-10 md:p-16 max-w-sm md:max-w-md w-11/12 bg-white/80 backdrop-blur-md rounded-3xl shadow-2xl shadow-pink-200/40 border-2 border-white overflow-hidden">
+            <SectionFrame variant="luxury-corners" opacity="opacity-75" />
             
             {/* Ornamen Mawar di Belakang Teks Utama */}
             <RoseCenter className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 opacity-40 mix-blend-multiply pointer-events-none" />
@@ -62,7 +66,7 @@ const Cover: React.FC<CoverProps> = ({ isOpened, onOpen }) => {
               transition={{ delay: 0.5, duration: 0.8 }}
               className="text-5xl md:text-6xl font-display text-heading mb-8 drop-shadow-sm"
             >
-              Putra & Ratu
+              Ratu & Putra
             </motion.h1>
             
             <motion.div
@@ -81,7 +85,7 @@ const Cover: React.FC<CoverProps> = ({ isOpened, onOpen }) => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.1 }}
-              onClick={onOpen}
+              onClick={handleOpen}
               className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-primary text-white rounded-full overflow-hidden shadow-lg shadow-pink-200 transition-transform hover:scale-105 active:scale-95 z-50"
             >
               <span className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-20 bg-white transition-opacity"></span>

@@ -1,94 +1,62 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Play, Pause, Square, SkipForward, Music, Disc } from 'lucide-react';
+import { globalAudio, tracks, subscribeTrackChange, playNextTrack, getCurrentTrackIndex } from '../lib/audioManager';
 
 interface MusicPlayerProps {
   isOpened: boolean;
 }
 
-const tracks = [
-  {
-    title: "Janji Suci",
-    src: "/Janji Suci - Yovie & Nuno (Saxophone Cover by Dori Wirawan) - dori wirawan.mp3"
-  },
-  {
-    title: "Beautiful In White",
-    src: "/Beautiful In White - Saxserenade (Westlife - Saxophone Cover) - SaxSerenade.mp3"
-  }
-];
-
 const MusicPlayer: React.FC<MusicPlayerProps> = ({ isOpened }) => {
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isExpanded, setIsExpanded] = useState(true);
-  
-  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    // Initialize audio object once
-    audioRef.current = new Audio(tracks[currentTrackIndex].src);
-    audioRef.current.loop = false;
+    const handlePlay = () => setIsPlaying(true);
+    const handlePause = () => setIsPlaying(false);
 
-    const handleEnded = () => {
-      handleNext();
-    };
-    
-    audioRef.current.addEventListener('ended', handleEnded);
+    globalAudio.addEventListener('play', handlePlay);
+    globalAudio.addEventListener('pause', handlePause);
+
+    const unsubscribe = subscribeTrackChange((newIndex) => {
+      setCurrentTrackIndex(newIndex);
+    });
+
+    // Sinkronisasi status dengan audioManager
+    setCurrentTrackIndex(getCurrentTrackIndex());
+    setIsPlaying(!globalAudio.paused);
 
     return () => {
-      if (audioRef.current) {
-        audioRef.current.removeEventListener('ended', handleEnded);
-        audioRef.current.pause();
-      }
+      globalAudio.removeEventListener('play', handlePlay);
+      globalAudio.removeEventListener('pause', handlePause);
+      unsubscribe();
     };
   }, []);
 
-  // Update track when index changes
-  useEffect(() => {
-    if (audioRef.current) {
-      const wasPlaying = isPlaying;
-      audioRef.current.src = tracks[currentTrackIndex].src;
-      if (wasPlaying) {
-        audioRef.current.play().catch(() => console.log("Play prevented"));
-      }
-    }
-  }, [currentTrackIndex]);
-
-  // Autoplay on open
-  useEffect(() => {
-    if (isOpened && audioRef.current && !isPlaying) {
-      audioRef.current.play().then(() => setIsPlaying(true)).catch((e) => console.log("Autoplay prevented", e));
-    }
-  }, [isOpened]);
-
   const togglePlay = () => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause();
-      } else {
-        audioRef.current.play();
-      }
-      setIsPlaying(!isPlaying);
+    if (isPlaying) {
+      globalAudio.pause();
+    } else {
+      globalAudio.play().catch(e => console.error("Play error:", e));
     }
   };
 
   const handleStop = () => {
-    if (audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current.currentTime = 0;
-      setIsPlaying(false);
-    }
+    globalAudio.pause();
+    globalAudio.currentTime = 0;
+    setIsPlaying(false);
   };
 
   const handleNext = () => {
-    setCurrentTrackIndex((prev) => (prev + 1) % tracks.length);
+    playNextTrack();
   };
 
   // Sembunyikan player sama sekali jika belum buka undangan
   if (!isOpened) return null;
 
   return (
-    <div className="fixed bottom-24 right-4 md:bottom-8 md:right-8 z-[90] flex flex-col items-end pointer-events-none">
+    <div className="fixed bottom-20 md:bottom-12 right-4 md:right-8 z-[120] flex flex-col items-end pointer-events-none">
       <AnimatePresence>
         {isExpanded && (
           <motion.div 

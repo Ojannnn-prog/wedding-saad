@@ -1,13 +1,17 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { Link } from 'react-scroll';
-import { FloralTopLeft, FloralBottomRight, FloatingPetals } from './Ornaments';
+import { FloralTopLeft, FloralBottomRight, FloatingPetals, RoseCenter } from './Ornaments';
+import gsap from 'gsap';
 
 const Hero: React.FC = () => {
   const ref = useRef(null);
+  const floralLeftRef = useRef(null);
+  const floralRightRef = useRef(null);
+  const roseCenterRef = useRef(null);
 
-  // Setup efek parallax
+  // Setup efek parallax framer-motion
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"]
@@ -17,6 +21,43 @@ const Hero: React.FC = () => {
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
   // Opasitas berkurang perlahan saat di-scroll
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.4]);
+
+  // Efek GSAP untuk animasi mengambang lembut pada ornamen bunga
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      if (floralLeftRef.current) {
+        gsap.to(floralLeftRef.current, {
+          y: -15,
+          rotation: 3,
+          duration: 3,
+          yoyo: true,
+          repeat: -1,
+          ease: "sine.inOut"
+        });
+      }
+      if (floralRightRef.current) {
+        gsap.to(floralRightRef.current, {
+          y: -15,
+          rotation: -3,
+          duration: 3.5,
+          yoyo: true,
+          repeat: -1,
+          ease: "sine.inOut"
+        });
+      }
+      if (roseCenterRef.current) {
+        gsap.to(roseCenterRef.current, {
+          scale: 1.05,
+          duration: 4,
+          yoyo: true,
+          repeat: -1,
+          ease: "sine.inOut"
+        });
+      }
+    }, ref);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
     <section
@@ -38,17 +79,27 @@ const Hero: React.FC = () => {
       <div className="absolute inset-0 bg-heading/30 mix-blend-multiply" />
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/90" />
 
+      {/* Ornamen Ekstra di Hero dengan animasi GSAP */}
+      <div ref={roseCenterRef} className="absolute inset-0 pointer-events-none flex items-center justify-center">
+        <RoseCenter className="w-[500px] h-[500px] opacity-20 mix-blend-overlay" />
+      </div>
+      <RoseCenter className="absolute bottom-0 right-0 transform translate-x-1/4 translate-y-1/4 w-96 h-96 opacity-20 mix-blend-overlay pointer-events-none z-10" />
+
       {/* Floating Petals di atas Background tapi di bawah Overlay Ornamen */}
       <FloatingPetals />
 
-      {/* Ornamen Bunga Estetik Kiri Atas */}
-      <FloralTopLeft className="absolute top-0 left-0 p-4 opacity-90 pointer-events-none w-48 h-48 md:w-72 md:h-72" />
+      {/* Ornamen Bunga Estetik Kiri Atas (GSAP animated) */}
+      <div ref={floralLeftRef} className="absolute top-0 left-0 pointer-events-none z-20">
+        <FloralTopLeft className="p-4 opacity-90 w-48 h-48 md:w-72 md:h-72" />
+      </div>
 
-      {/* Ornamen Bunga Estetik Kanan Bawah */}
-      <FloralBottomRight className="absolute bottom-0 right-0 p-4 opacity-90 pointer-events-none w-48 h-48 md:w-72 md:h-72" />
+      {/* Ornamen Bunga Estetik Kanan Bawah (GSAP animated) */}
+      <div ref={floralRightRef} className="absolute bottom-0 right-0 pointer-events-none z-20">
+        <FloralBottomRight className="p-4 opacity-90 w-48 h-48 md:w-72 md:h-72" />
+      </div>
 
       {/* Konten Utama */}
-      <div className="relative z-10 flex flex-col items-center justify-center text-center px-4 mt-16">
+      <div className="relative z-10 flex flex-col items-center justify-center text-center px-4 mt-16" data-aos="fade-up" data-aos-duration="1000">
         <motion.p
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -65,7 +116,7 @@ const Hero: React.FC = () => {
           className="text-6xl md:text-8xl lg:text-9xl text-white font-display mb-6 drop-shadow-lg"
           style={{ textShadow: "2px 4px 10px rgba(0,0,0,0.3)" }}
         >
-          Putra & Ratu
+          Ratu & Putra
         </motion.h1>
 
         <motion.p

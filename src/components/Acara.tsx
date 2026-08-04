@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, Clock, MapPin, Map } from 'lucide-react';
-import { FloralBottomRight, FloatingPetals } from './Ornaments';
+import { FloralBottomRight, FloatingPetals, RoseCenter } from './Ornaments';
 
 const Acara: React.FC = () => {
   const fadeUpVariant = {
@@ -46,7 +46,10 @@ const Acara: React.FC = () => {
     <section id="acara" className="py-24 bg-background relative overflow-hidden">
       <FloatingPetals />
       
-      <FloralBottomRight className="absolute top-0 right-0 opacity-50 pointer-events-none w-48 h-48 md:w-64 md:h-64 rotate-180" />
+      {/* Ornamen Bunga Besar di Belakang Waktu */}
+      <RoseCenter className="absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 md:w-96 md:h-96 opacity-30 mix-blend-multiply pointer-events-none" />
+      
+      <FloralBottomRight className="absolute top-0 right-0 opacity-60 pointer-events-none w-56 h-56 md:w-80 md:h-80 rotate-180" />
 
       <div className="container mx-auto px-4 max-w-5xl relative z-10">
         <motion.div 
@@ -136,6 +139,9 @@ const Acara: React.FC = () => {
             variants={fadeUpVariant}
             className="flex-1 bg-white p-8 md:p-10 rounded-2xl shadow-lg shadow-pink-100 border border-secondary relative overflow-hidden group hover:shadow-xl transition-shadow duration-300"
           >
+            {/* Sudut Dekoratif Kartu Akad */}
+            <img src="/Group of 545 Objects.svg" alt="Sudut Kartu" className="absolute -top-3 -left-3 w-16 h-16 pointer-events-none opacity-80 z-20" />
+            <img src="/Group of 545 Objects.svg" alt="Sudut Kartu" className="absolute -bottom-3 -right-3 w-16 h-16 pointer-events-none opacity-80 scale-[-1] z-20" />
             <div className="absolute top-0 right-0 w-32 h-32 bg-secondary rounded-bl-full opacity-50 group-hover:scale-110 transition-transform duration-500" />
             
             <div className="relative z-10 flex flex-col items-center text-center h-full">
@@ -187,6 +193,9 @@ const Acara: React.FC = () => {
             variants={fadeUpVariant}
             className="flex-1 bg-white p-8 md:p-10 rounded-2xl shadow-lg shadow-pink-100 border border-secondary relative overflow-hidden group hover:shadow-xl transition-shadow duration-300"
           >
+            {/* Sudut Dekoratif Kartu Resepsi */}
+            <img src="/Group of 545 Objects.svg" alt="Sudut Kartu" className="absolute -top-3 -right-3 w-16 h-16 pointer-events-none opacity-80 -scale-x-100 z-20" />
+            <img src="/Group of 545 Objects.svg" alt="Sudut Kartu" className="absolute -bottom-3 -left-3 w-16 h-16 pointer-events-none opacity-80 -scale-y-100 z-20" />
             <div className="absolute top-0 left-0 w-32 h-32 bg-secondary rounded-br-full opacity-50 group-hover:scale-110 transition-transform duration-500" />
             
             <div className="relative z-10 flex flex-col items-center text-center h-full">

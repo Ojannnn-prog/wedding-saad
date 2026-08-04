@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FloatingPetals } from './Ornaments';
+import { FloatingPetals, RoseCenter, FloralTopRight } from './Ornaments';
 
 const Mempelai: React.FC = () => {
   const fadeUpVariant = {
@@ -9,16 +9,11 @@ const Mempelai: React.FC = () => {
   };
 
   return (
-    <section id="mempelai" className="py-24 bg-secondary overflow-hidden relative">
+    <section id="mempelai" className="py-24 bg-white relative overflow-hidden">
       <FloatingPetals />
+      <RoseCenter className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-10 mix-blend-multiply pointer-events-none" />
+      <FloralTopRight className="absolute top-0 right-0 opacity-60 pointer-events-none w-56 h-56 md:w-80 md:h-80" />
       
-      {/* Watermark Ornamen Floral (opsional, sangat transparan) */}
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-[0.03] pointer-events-none w-[800px] h-[800px]">
-        <svg viewBox="0 0 100 100" fill="#6B4454" xmlns="http://www.w3.org/2000/svg">
-           <path d="M50 0 C 75 25, 100 50, 50 100 C 0 50, 25 25, 50 0 Z" />
-        </svg>
-      </div>
-
       <div className="container mx-auto px-4 max-w-5xl relative z-10">
         {/* Header Section */}
         <motion.div 
@@ -41,7 +36,7 @@ const Mempelai: React.FC = () => {
         {/* Profiles */}
         <div className="flex flex-col md:flex-row items-center justify-center gap-12 md:gap-8 lg:gap-20">
           
-          {/* Groom / Pria */}
+          {/* Bride / Wanita - Ratu Nabila */}
           <motion.div 
             initial="hidden"
             whileInView="visible"
@@ -51,21 +46,28 @@ const Mempelai: React.FC = () => {
             className="flex flex-col items-center text-center w-full md:w-1/2"
           >
             <div className="relative mb-8">
+              {/* Ornamen Sudut Kartu Foto Wanita */}
+              <img src="/Group of 271 Objects.svg" alt="Sudut Kiri Foto" className="absolute -top-4 -left-4 w-16 h-16 md:w-20 md:h-20 pointer-events-none opacity-85 z-20" />
+              <img src="/Group of 271 Objects.svg" alt="Sudut Kanan Foto" className="absolute -top-4 -right-4 w-16 h-16 md:w-20 md:h-20 pointer-events-none opacity-85 -scale-x-100 z-20" />
               {/* Image Frame - Rounded Top */}
               <div className="w-56 h-72 md:w-64 md:h-80 rounded-t-full rounded-b-xl overflow-hidden shadow-md shadow-pink-100 border-[6px] border-white relative z-10 bg-white">
                 <img 
-                  src="/DSC_2398.jpg" 
-                  alt="Mempelai Pria" 
-                  className="w-full h-full object-cover"
+                  src="/DSC_2263.jpg" 
+                  alt="Mempelai Wanita" 
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover transform-gpu will-change-transform"
                 />
               </div>
-              {/* Soft Shadow / Glow */}
-              <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-primary/30 rounded-full blur-2xl z-0" />
+              <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-primary/30 rounded-full blur-2xl z-0" />
             </div>
             
-            <h3 className="text-2xl md:text-3xl font-serif text-heading mb-3">Putra</h3>
-            <p className="text-sm font-sans text-textMain/80 mb-1">Putra dari</p>
-            <p className="text-base font-sans text-textMain font-semibold">Bapak (Menyusul) & Ibu (Menyusul)</p>
+            <h3 className="text-2xl md:text-3xl font-serif text-heading mb-3">Ratu Nabila</h3>
+            <p className="text-sm font-sans text-textMain/80 mb-1">Putri dari</p>
+            <p className="text-base font-sans text-textMain font-semibold leading-relaxed">
+              Bapak Drs. Akhmad Kawakibi, M.M. <br />
+              <span className="font-normal">&amp;</span> Ibu Hj. Dini Kusuma Mustikaning Dyah, A.Md.
+            </p>
           </motion.div>
 
           {/* Divider "&" */}
@@ -82,7 +84,7 @@ const Mempelai: React.FC = () => {
             <span className="text-6xl font-display text-primary">&</span>
           </div>
 
-          {/* Bride / Wanita */}
+          {/* Groom / Pria - Saad Saputra */}
           <motion.div 
             initial="hidden"
             whileInView="visible"
@@ -92,20 +94,29 @@ const Mempelai: React.FC = () => {
             className="flex flex-col items-center text-center w-full md:w-1/2"
           >
             <div className="relative mb-8">
+              {/* Ornamen Sudut Kartu Foto Pria */}
+              <img src="/Group of 271 Objects.svg" alt="Sudut Kiri Foto" className="absolute -top-4 -left-4 w-16 h-16 md:w-20 md:h-20 pointer-events-none opacity-85 z-20" />
+              <img src="/Group of 271 Objects.svg" alt="Sudut Kanan Foto" className="absolute -top-4 -right-4 w-16 h-16 md:w-20 md:h-20 pointer-events-none opacity-85 -scale-x-100 z-20" />
               {/* Image Frame - Rounded Top */}
               <div className="w-56 h-72 md:w-64 md:h-80 rounded-t-full rounded-b-xl overflow-hidden shadow-md shadow-pink-100 border-[6px] border-white relative z-10 bg-white">
                 <img 
-                  src="/DSC_2263.jpg" 
-                  alt="Mempelai Wanita" 
-                  className="w-full h-full object-cover"
+                  src="/DSC_2398.jpg" 
+                  alt="Mempelai Pria" 
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover transform-gpu will-change-transform"
                 />
               </div>
-              <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-primary/30 rounded-full blur-2xl z-0" />
+              {/* Soft Shadow / Glow */}
+              <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-primary/30 rounded-full blur-2xl z-0" />
             </div>
             
-            <h3 className="text-2xl md:text-3xl font-serif text-heading mb-3">Ratu</h3>
-            <p className="text-sm font-sans text-textMain/80 mb-1">Putri dari</p>
-            <p className="text-base font-sans text-textMain font-semibold">Bapak (Menyusul) & Ibu (Menyusul)</p>
+            <h3 className="text-2xl md:text-3xl font-serif text-heading mb-3">Saad Saputra</h3>
+            <p className="text-sm font-sans text-textMain/80 mb-1">Putra dari</p>
+            <p className="text-base font-sans text-textMain font-semibold leading-relaxed">
+              Bapak Sanuri <br />
+              <span className="font-normal">&amp;</span> Ibu Sar'ah
+            </p>
           </motion.div>
 
         </div>
