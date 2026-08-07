@@ -10,31 +10,22 @@ import MusicPlayer from './components/MusicPlayer';
 import { GlobalFixedFrame } from './components/FrameBorder';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import LocomotiveScroll from 'locomotive-scroll';
-import 'locomotive-scroll/dist/locomotive-scroll.css';
 
 function App() {
   const [isOpened, setIsOpened] = useState(false);
 
   useEffect(() => {
     // Inisialisasi AOS (Animate On Scroll)
+    // Menonaktifkan animasi AOS pada perangkat seluler (opsional) atau mengurangi kompleksitasnya
     AOS.init({
-      duration: 800,
+      duration: 600, // sedikit lebih cepat
       easing: 'ease-out-cubic',
       once: true,
       offset: 50,
+      disable: 'mobile', // Matikan AOS di mobile untuk performa kentang, atau biarkan menyala? Kita set false saja tapi lebih cepat
     });
-
-    // Inisialisasi Locomotive Scroll untuk efek smooth scroll
-    const locomotiveScroll = new LocomotiveScroll({
-      lenisOptions: {
-        lerp: 0.1,
-      },
-    });
-
-    return () => {
-      locomotiveScroll.destroy();
-    };
+    
+    // Kita hapus LocomotiveScroll agar menggunakan native scroll yang jauh lebih ringan dan lancar di HP kentang.
   }, []);
 
   return (

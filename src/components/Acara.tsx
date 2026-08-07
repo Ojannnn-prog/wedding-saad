@@ -64,6 +64,9 @@ const Acara: React.FC = () => {
           <p className="text-textMain font-sans max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
             Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud menyelenggarakan acara pernikahan putra-putri kami yang akan dilaksanakan pada:
           </p>
+          <div className="mt-6 mb-2">
+            <p className="text-xl md:text-2xl font-serif text-primary font-bold">Sabtu, 12 September 2026</p>
+          </div>
         </motion.div>
 
         <motion.div
@@ -163,9 +166,9 @@ const Acara: React.FC = () => {
                 <div className="flex items-start gap-4 text-textMain">
                   <MapPin className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                   <div className="text-left">
-                    <p className="font-semibold font-sans text-sm md:text-base">Baiturrahman</p>
+                    <p className="font-semibold font-sans text-sm md:text-base">SD Plus Baiturrahman</p>
                     <p className="text-xs md:text-sm font-sans text-textMain/80 mt-1">
-                      Jl. Nagrog No.65, Pasirjati, Kec. Ujung Berung, Kota Bandung, Jawa Barat 40616
+                      Jalan Prof KHM Sjadzli Hasan, Jl. Pasir Jati Timur No.44, Pasirwangi, Kec. Ujung Berung, Kota Bandung, Jawa Barat 40611
                     </p>
                   </div>
                 </div>
@@ -173,7 +176,7 @@ const Acara: React.FC = () => {
 
               <div className="mt-auto w-full pt-4 border-t border-secondary">
                 <a 
-                  href="https://maps.app.goo.gl/vzWaZnjVVWgefYPj8" 
+                  href="https://maps.app.goo.gl/As66kHM22YU48AAi7" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 bg-primary hover:bg-heading text-white w-full px-6 py-3 rounded-full font-sans text-sm font-medium transition-colors shadow-md shadow-pink-200"
@@ -217,9 +220,9 @@ const Acara: React.FC = () => {
                 <div className="flex items-start gap-4 text-textMain">
                   <MapPin className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                   <div className="text-left">
-                    <p className="font-semibold font-sans text-sm md:text-base">Baiturrahman</p>
+                    <p className="font-semibold font-sans text-sm md:text-base">SD Plus Baiturrahman</p>
                     <p className="text-xs md:text-sm font-sans text-textMain/80 mt-1">
-                      Jl. Nagrog No.65, Pasirjati, Kec. Ujung Berung, Kota Bandung, Jawa Barat 40616
+                      Jalan Prof KHM Sjadzli Hasan, Jl. Pasir Jati Timur No.44, Pasirwangi, Kec. Ujung Berung, Kota Bandung, Jawa Barat 40611
                     </p>
                   </div>
                 </div>
@@ -227,7 +230,7 @@ const Acara: React.FC = () => {
 
               <div className="mt-auto w-full pt-4 border-t border-secondary">
                 <a 
-                  href="https://maps.app.goo.gl/vzWaZnjVVWgefYPj8" 
+                  href="https://maps.app.goo.gl/As66kHM22YU48AAi7" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 bg-primary hover:bg-heading text-white w-full px-6 py-3 rounded-full font-sans text-sm font-medium transition-colors shadow-md shadow-pink-200"

@@ -63,7 +63,7 @@ const Mempelai: React.FC = () => {
             </div>
             
             <h3 className="text-2xl md:text-3xl font-serif text-heading mb-3">Ratu Nabila</h3>
-            <p className="text-sm font-sans text-textMain/80 mb-1">Putri dari</p>
+            <p className="text-sm font-sans text-textMain/80 mb-1">Putri ke-2 dari</p>
             <p className="text-base font-sans text-textMain font-semibold leading-relaxed">
               Bapak Drs. Akhmad Kawakibi, M.M. <br />
               <span className="font-normal">&amp;</span> Ibu Hj. Dini Kusuma Mustikaning Dyah, A.Md.
@@ -112,7 +112,7 @@ const Mempelai: React.FC = () => {
             </div>
             
             <h3 className="text-2xl md:text-3xl font-serif text-heading mb-3">Saad Saputra</h3>
-            <p className="text-sm font-sans text-textMain/80 mb-1">Putra dari</p>
+            <p className="text-sm font-sans text-textMain/80 mb-1">Putra ke-9 dari</p>
             <p className="text-base font-sans text-textMain font-semibold leading-relaxed">
               Bapak Sanuri <br />
               <span className="font-normal">&amp;</span> Ibu Sar'ah

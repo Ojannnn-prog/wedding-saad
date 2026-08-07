@@ -45,11 +45,11 @@ const Cover: React.FC<CoverProps> = ({ isOpened, onOpen }) => {
           <FloralBottomRight className="absolute bottom-0 right-0 p-2 opacity-80 pointer-events-none w-56 h-56 md:w-72 md:h-72" />
 
           {/* Kartu Undangan (Amplop) */}
-          <div className="relative z-10 flex flex-col items-center justify-center text-center p-10 md:p-16 max-w-sm md:max-w-md w-11/12 bg-white/80 backdrop-blur-md rounded-3xl shadow-2xl shadow-pink-200/40 border-2 border-white overflow-hidden">
+          <div className="relative z-10 flex flex-col items-center justify-center text-center p-10 md:p-16 max-w-sm md:max-w-md w-11/12 bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl shadow-pink-200/40 border-2 border-white overflow-hidden">
             <SectionFrame variant="luxury-corners" opacity="opacity-75" />
             
             {/* Ornamen Mawar di Belakang Teks Utama */}
-            <RoseCenter className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 opacity-40 mix-blend-multiply pointer-events-none" />
+            <RoseCenter className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 opacity-20 pointer-events-none" />
 
             <motion.p 
               initial={{ opacity: 0, y: 10 }}

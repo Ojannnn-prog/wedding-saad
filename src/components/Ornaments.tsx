@@ -151,7 +151,7 @@ export const FloralBottomLeft: React.FC<{ className?: string }> = ({ className =
 // Ornamen Bunga Mawar Tengah
 export const RoseCenter: React.FC<{ className?: string }> = ({ className = "" }) => (
   <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className={`pointer-events-none ${className}`}>
-    <circle cx="50" cy="50" r="30" fill="#DDA7A5" opacity="0.3" style={{ filter: "blur(10px)" }} />
+    <circle cx="50" cy="50" r="30" fill="#DDA7A5" opacity="0.1" />
     <path d="M50,20 C60,20 70,30 70,50 C70,70 60,80 50,80 C40,80 30,70 30,50 C30,30 40,20 50,20 Z" fill="#DDA7A5" opacity="0.6" />
     <path d="M50,30 C55,30 60,40 60,50 C60,60 55,70 50,70 C45,70 40,60 40,50 C40,40 45,30 50,30 Z" fill="#C48B89" opacity="0.8" />
     <path d="M50,40 C52,40 55,45 55,50 C55,55 52,60 50,60 C48,60 45,55 45,50 C45,45 48,40 50,40 Z" fill="#A86A68" opacity="0.9" />
@@ -171,40 +171,39 @@ export const FloatingPetals: React.FC = () => {
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-      {/* Meningkatkan jumlah kelopak bunga secara drastis untuk efek "sangat ramai" (100+) */}
-      {[...Array(120)].map((_, i) => {
+      {/* Ditingkatkan menjadi 90 kelopak agar terlihat lebih ramai (sesuai request) tapi tetap ada hardware acceleration (akan tetap lancar) */}
+      {[...Array(90)].map((_, i) => {
         const left = `${Math.random() * 100}%`;
         const top = `${Math.random() * 100}%`;
-        const animationDuration = `${10 + Math.random() * 30}s`;
-        const animationDelay = `-${Math.random() * 30}s`;
+        const animationDuration = `${12 + Math.random() * 25}s`;
+        const animationDelay = `-${Math.random() * 25}s`;
         const colorClass = colors[i % colors.length];
-        const isCircle = i % 3 === 0; // Beberapa kelopak berbentuk bundar (seperti bunga melati/sakura kecil)
+        const isCircle = i % 3 === 0;
         
         return (
           <div 
             key={i}
-            className={`absolute ${colorClass} mix-blend-multiply ${
+            className={`absolute ${colorClass} ${
               isCircle ? 'rounded-full' : 'rounded-tl-full rounded-br-full rounded-tr-sm rounded-bl-sm'
             }`}
             style={{
               left,
               top,
-              width: `${isCircle ? 6 + Math.random() * 8 : 10 + Math.random() * 20}px`,
-              height: `${isCircle ? 6 + Math.random() * 8 : 10 + Math.random() * 20}px`,
-              animation: `float-heavy ${animationDuration} ease-in-out ${animationDelay} infinite`,
+              width: `${isCircle ? 6 + Math.random() * 6 : 10 + Math.random() * 15}px`,
+              height: `${isCircle ? 6 + Math.random() * 6 : 10 + Math.random() * 15}px`,
+              animation: `float-light ${animationDuration} linear ${animationDelay} infinite`,
               transform: `rotate(${Math.random() * 360}deg)`,
-              filter: `blur(${Math.random() * 2}px)`
+              willChange: 'transform, opacity' // Hardware acceleration untuk anti-lag
             }}
           />
         );
       })}
       <style>{`
-        @keyframes float-heavy {
+        @keyframes float-light {
           0% { transform: translate(0, -20px) rotate(0deg); opacity: 0; }
-          20% { opacity: 0.9; }
-          50% { transform: translate(${Math.random() * 100 > 50 ? 50 : -50}px, 150px) rotate(180deg); opacity: 0.5; }
-          80% { opacity: 0.9; }
-          100% { transform: translate(${Math.random() * 100 > 50 ? -40 : 40}px, 300px) rotate(360deg); opacity: 0; }
+          20% { opacity: 0.8; }
+          80% { opacity: 0.8; }
+          100% { transform: translate(${Math.random() * 100 > 50 ? -30 : 30}px, 250px) rotate(360deg); opacity: 0; }
         }
       `}</style>
     </div>
