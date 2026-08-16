@@ -111,7 +111,7 @@ const Mempelai: React.FC = () => {
               <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-primary/30 rounded-full blur-2xl z-0" />
             </div>
             
-            <h3 className="text-2xl md:text-3xl font-serif text-heading mb-3">Saad Saputra</h3>
+            <h3 className="text-2xl md:text-3xl font-serif text-heading mb-3">Saad Saputra, S.Pd.</h3>
             <p className="text-sm font-sans text-textMain/80 mb-1">Putra ke-9 dari</p>
             <p className="text-base font-sans text-textMain font-semibold leading-relaxed">
               Bapak Sanuri <br />
